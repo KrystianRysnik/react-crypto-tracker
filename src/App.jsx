@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import CryptoList from "./components/CryptoList";
+import initialCryptocurrencies from "./data";
 
 function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  const [cryptocurrencies, updateCryptocurrencies] = useState(
+    initialCryptocurrencies
+  );
+
+  return (
+    <div className="h-full p-4 bg-slate-200">
+      <CryptoList
+        cryptocurrencies={cryptocurrencies}
+        updateCryptocurrencies={updateCryptocurrencies}
+      />
+    </div>
+  );
 }
 
 export default App;
