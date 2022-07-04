@@ -13,7 +13,11 @@ function CryptoItem({ cryptocurrency, removeCrypto }) {
 
       <p className="text-sm">{price * quantity}$</p>
 
-      <button type="button" onClick={() => removeCrypto()}>
+      <button
+        className="block w-full mt-2 py-2 px-1 bg-red-500 rounded-md text-white"
+        type="button"
+        onClick={() => removeCrypto()}
+      >
         Remove
       </button>
     </li>
