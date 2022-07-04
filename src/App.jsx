@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import CryptoList from "./components/CryptoList";
-import initialCryptocurrencies from "./data";
+import initialStatecryptocurrencies from "./data";
+import cryptocurrencyReducer from "./reducers/cryptocurrencyReducer";
 
 function App() {
-  const [cryptocurrencies, updateCryptocurrencies] = useState(
-    initialCryptocurrencies
-  );
+  const [cryptocurrencies, dispatchCryptocurrencies] = useReducer(cryptocurrencyReducer, initialStatecryptocurrencies);
 
   return (
     <div className="h-full p-4 bg-slate-200">
-      <CryptoList
-        cryptocurrencies={cryptocurrencies}
-        updateCryptocurrencies={updateCryptocurrencies}
-      />
+      <CryptoList cryptocurrencies={cryptocurrencies} dispatchCryptocurrencies={dispatchCryptocurrencies} />
     </div>
   );
 }

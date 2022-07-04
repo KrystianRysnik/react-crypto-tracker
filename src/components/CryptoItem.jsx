@@ -1,28 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function CryptoItem({ crypto }) {
+function CryptoItem({ cryptocurrency, removeCrypto }) {
+  const { name, quantity, price, id } = cryptocurrency;
+
   return (
     <li className="p-4 bg-white rounded-lg shadow-md">
-      <h3 className="font-medium">{crypto.name}</h3>
+      <h3 className="font-medium">{name}</h3>
       <p className="text-xl">
-        {crypto.quantity} <small className="uppercase">{crypto.id}</small>
+        {quantity} <small className="uppercase">{id}</small>
       </p>
 
-      <p className="text-sm">{crypto.price * crypto.quantity}$</p>
+      <p className="text-sm">{price * quantity}$</p>
+
+      <button type="button" onClick={() => removeCrypto()}>
+        Remove
+      </button>
     </li>
   );
 }
 
 CryptoItem.propTypes = {
-  crypto: PropTypes.objectOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      quantity: PropTypes.number,
-      price: PropTypes.number
-    })
-  ).isRequired
+  cryptocurrency: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    quantity: PropTypes.number,
+    price: PropTypes.number
+  }).isRequired,
+  removeCrypto: PropTypes.func.isRequired
 };
 
 export default CryptoItem;

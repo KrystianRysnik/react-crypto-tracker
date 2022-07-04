@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 function NewCrypto({ addCrypto }) {
   const handleAdd = (e) => {
     e.preventDefault();
-
     const formData = new FormData(e.target);
+
     addCrypto({
       id: formData.get("id"),
       name: formData.get("name"),

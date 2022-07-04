@@ -3,15 +3,24 @@ import PropTypes from "prop-types";
 import CryptoItem from "./CryptoItem";
 import NewCrypto from "./NewCrypto";
 
-function CryptoList({ cryptocurrencies, updateCryptocurrencies }) {
+function CryptoList({ cryptocurrencies, dispatchCryptocurrencies }) {
   return (
     <ul className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {(cryptocurrencies || []).map((crypto) => (
-        <CryptoItem crypto={crypto} key={crypto.id} />
+      {(cryptocurrencies || []).map((cryptocurrency) => (
+        <CryptoItem
+          cryptocurrency={cryptocurrency}
+          key={cryptocurrency.id}
+          removeCrypto={() =>
+            dispatchCryptocurrencies({
+              type: "remove",
+              payload: cryptocurrency.id
+            })
+          }
+        />
       ))}
       <NewCrypto
         addCrypto={(cryptocurrency) =>
-          updateCryptocurrencies([...cryptocurrencies, cryptocurrency])
+          dispatchCryptocurrencies({ type: "add", payload: cryptocurrency })
         }
       />
     </ul>
@@ -27,12 +36,12 @@ CryptoList.propTypes = {
       price: PropTypes.number
     })
   ),
-  updateCryptocurrencies: PropTypes.func
+  dispatchCryptocurrencies: PropTypes.func
 };
 
 CryptoList.defaultProps = {
   cryptocurrencies: [],
-  updateCryptocurrencies: () => {}
+  dispatchCryptocurrencies: () => {}
 };
 
 export default CryptoList;

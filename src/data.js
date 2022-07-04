@@ -1,4 +1,4 @@
-const initialCryptocurrencies = [
+const initialStatecryptocurrencies = [
   {
     id: "usdt",
     name: "USD Tether",
@@ -13,4 +13,4 @@ const initialCryptocurrencies = [
   }
 ];
 
-export default initialCryptocurrencies;
+export default initialStatecryptocurrencies;
