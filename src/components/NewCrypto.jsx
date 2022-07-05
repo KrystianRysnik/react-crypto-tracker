@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Input from "./Input";
 
 function NewCrypto({ addCrypto }) {
   const handleAdd = (e) => {
@@ -9,8 +10,8 @@ function NewCrypto({ addCrypto }) {
     addCrypto({
       id: formData.get("id"),
       name: formData.get("name"),
-      quantity: formData.get("quantity"),
-      price: formData.get("price")
+      quantity: parseFloat(formData.get("quantity")),
+      price: parseFloat(formData.get("price"))
     });
     e.target.reset();
   };
@@ -19,49 +20,16 @@ function NewCrypto({ addCrypto }) {
     <li className="p-4 bg-white rounded-lg shadow-md">
       <form onSubmit={handleAdd}>
         <div className="mb-4">
-          <label htmlFor="id">
-            Id:
-            <input
-              type="id"
-              name="id"
-              id="id"
-              className="border-[1px] border-slate-400 rounded-md"
-            />
-          </label>
+          <Input id="id" label="id" />
         </div>
         <div className="mb-4">
-          <label htmlFor="id">
-            Name:
-            <input
-              type="text"
-              name="name"
-              id="name"
-              className="border-[1px] border-slate-400 rounded-md"
-            />
-          </label>
+          <Input id="name" label="Name" />
         </div>
         <div className="mb-4">
-          <label htmlFor="quantity">
-            Quantity:
-            <input
-              type="number"
-              name="quantity"
-              id="quantity"
-              className="border-[1px] border-slate-400 rounded-md"
-            />
-          </label>
+          <Input id="quantity" label="Quantity" type="number" />
         </div>
         <div className="mb-4">
-          <label htmlFor="price">
-            Price:
-            <input
-              type="number"
-              step="0.01"
-              name="price"
-              id="price"
-              className="border-[1px] border-slate-400 rounded-md"
-            />
-          </label>
+          <Input id="price" label="Price" type="number" />
         </div>
         <div>
           <button
