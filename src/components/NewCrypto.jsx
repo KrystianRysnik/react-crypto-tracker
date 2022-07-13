@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Autocomplete from "./autocomplete/Autocomplete";
 import Input from "./Input";
 
 function NewCrypto({ addCrypto }) {
@@ -8,10 +9,11 @@ function NewCrypto({ addCrypto }) {
     const formData = new FormData(e.target);
 
     addCrypto({
-      id: formData.get("id"),
-      name: formData.get("name"),
+      id: formData.get("coin[id]"),
+      name: formData.get("coin[name]"),
+      symbol: formData.get("coin[symbol]"),
       quantity: parseFloat(formData.get("quantity")),
-      price: parseFloat(formData.get("price"))
+      price: 0
     });
     e.target.reset();
   };
@@ -20,16 +22,10 @@ function NewCrypto({ addCrypto }) {
     <li className="p-4 bg-white rounded-lg shadow-md">
       <form onSubmit={handleAdd}>
         <div className="mb-4">
-          <Input id="id" label="id" />
-        </div>
-        <div className="mb-4">
-          <Input id="name" label="Name" />
+          <Autocomplete id="coin" label="Cryptocurrency" />
         </div>
         <div className="mb-4">
           <Input id="quantity" label="Quantity" type="number" />
-        </div>
-        <div className="mb-4">
-          <Input id="price" label="Price" type="number" />
         </div>
         <div>
           <button
