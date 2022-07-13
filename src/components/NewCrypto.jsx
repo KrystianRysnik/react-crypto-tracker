@@ -18,16 +18,17 @@ function NewCrypto({ addCrypto }) {
       quantity: parseFloat(formData.get("quantity")),
       price
     });
+
     e.target.reset();
   };
 
   return (
     <li className="p-4 bg-white rounded-lg shadow-md">
       <form onSubmit={handleAdd}>
-        <div className="mb-4">
+        <div className="mb-3">
           <Autocomplete id="coin" label="Cryptocurrency" />
         </div>
-        <div className="mb-4">
+        <div className="mb-3">
           <Input id="quantity" label="Quantity" type="number" />
         </div>
         <div>

@@ -4,21 +4,21 @@ import PropTypes from "prop-types";
 function Input({ id, label, type }) {
   return (
     <label htmlFor={id}>
-      {label}:
+      <p className="mb-1">{label}:</p>
       {type === "number" ? (
         <input
           type={type}
           step="0.0000000001"
           name={id}
           id={id}
-          className="border-[1px] border-slate-400 rounded-md"
+          className="border-[1px] border-slate-400 rounded-md px-3 h-[38px] w-full"
         />
       ) : (
         <input
           type={type}
           name={id}
           id={id}
-          className="border-[1px] border-slate-400 rounded-md"
+          className="border-[1px] border-slate-400 rounded-md px-3 h-[38px] w-full"
         />
       )}
     </label>

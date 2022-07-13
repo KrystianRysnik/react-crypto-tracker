@@ -1,24 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { XIcon } from "@heroicons/react/solid";
 
 function CryptoItem({ cryptocurrency, removeCrypto }) {
   const { name, quantity, price, symbol } = cryptocurrency;
 
   return (
-    <li className="p-4 bg-white rounded-lg shadow-md">
+    <li className="p-4 bg-white rounded-lg shadow-md relative">
       <h3 className="font-medium">{name}</h3>
       <p className="text-xl">
         {quantity} <small className="uppercase">{symbol}</small>
       </p>
 
-      <p className="text-sm">{price * quantity}$</p>
+      <p className="text-sm">{(price * quantity).toFixed(2)}$</p>
 
       <button
-        className="block w-full mt-2 py-2 px-1 bg-red-500 rounded-md text-white"
+        className="w-[42px] h-[42px] absolute top-0 right-0 text-slate-500 hover:text-slate-800"
         type="button"
         onClick={() => removeCrypto()}
       >
-        Remove
+        <XIcon className="w-[20px] mx-auto " />
       </button>
     </li>
   );

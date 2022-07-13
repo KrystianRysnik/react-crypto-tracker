@@ -24,7 +24,7 @@ function Autocomplete({ id, label }) {
 
   return (
     <label htmlFor={id}>
-      {label}:
+      <p className="mb-1">{label}:</p>
       <Combobox
         name={id}
         id={id}
@@ -37,12 +37,16 @@ function Autocomplete({ id, label }) {
             displayValue={(crypto) =>
               crypto ? `${crypto.symbol} - ${crypto.name}` : ""
             }
-            className="border-[1px] border-slate-400 rounded-md"
+            className="border-[1px] border-slate-400 rounded-md px-3 h-[38px] w-full"
           />
-          <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+          <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md border-[1px] border-slate-400 bg-white shadow-lg">
             {(filteredCrypto || defaultCrypto).map((crypto) => {
               return (
-                <Combobox.Option key={crypto.id} value={crypto}>
+                <Combobox.Option
+                  key={crypto.id}
+                  value={crypto}
+                  className="px-3 py-1 text-sm"
+                >
                   {crypto.symbol} - {crypto.name}
                 </Combobox.Option>
               );
