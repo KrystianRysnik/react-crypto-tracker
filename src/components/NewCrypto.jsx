@@ -2,18 +2,21 @@ import React from "react";
 import PropTypes from "prop-types";
 import Autocomplete from "./autocomplete/Autocomplete";
 import Input from "./Input";
+import { fetchDetails } from "../api/coingeckoApi";
 
 function NewCrypto({ addCrypto }) {
-  const handleAdd = (e) => {
+  const handleAdd = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+    const coinDetails = await fetchDetails(formData.get("coin[id]"));
+    const price = coinDetails[formData.get("coin[id]")].usd;
 
     addCrypto({
       id: formData.get("coin[id]"),
       name: formData.get("coin[name]"),
       symbol: formData.get("coin[symbol]"),
       quantity: parseFloat(formData.get("quantity")),
-      price: 0
+      price
     });
     e.target.reset();
   };

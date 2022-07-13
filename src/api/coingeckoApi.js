@@ -5,3 +5,12 @@ export const searchQuery = async (query) => {
   const json = await resp.json();
   return json.coins;
 };
+
+export const fetchDetails = async (id, vsCurrencies = "usd") => {
+  const ids = typeof id === "string" ? id : id.join(",");
+  const resp = await fetch(
+    `${url}/simple/price?ids=${ids}&vs_currencies=${vsCurrencies}`
+  );
+  const json = resp.json();
+  return json;
+};
