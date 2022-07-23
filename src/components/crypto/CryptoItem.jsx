@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { XIcon } from "@heroicons/react/solid";
 
 function CryptoItem({ cryptocurrency, removeCrypto }) {
-  const { name, quantity, price, symbol } = cryptocurrency;
+  const { name, quantity, prices, symbol } = cryptocurrency;
 
   return (
     <li className="p-4 bg-white rounded-lg shadow-md relative">
@@ -12,7 +12,7 @@ function CryptoItem({ cryptocurrency, removeCrypto }) {
         {quantity} <small className="uppercase">{symbol}</small>
       </p>
 
-      <p className="text-sm">{(price * quantity).toFixed(2)}$</p>
+      <p className="text-sm">{(prices.usd * quantity).toFixed(2)}$</p>
 
       <button
         className="w-[42px] h-[42px] absolute top-0 right-0 text-slate-500 hover:text-slate-800"
@@ -31,7 +31,11 @@ CryptoItem.propTypes = {
     name: PropTypes.string,
     symbol: PropTypes.string,
     quantity: PropTypes.number,
-    price: PropTypes.number
+    prices: PropTypes.shape({
+      usd: PropTypes.number,
+      eur: PropTypes.number,
+      pln: PropTypes.number
+    })
   }).isRequired,
   removeCrypto: PropTypes.func.isRequired
 };

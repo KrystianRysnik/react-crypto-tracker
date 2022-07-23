@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import CryptoList from "./components/CryptoList";
+import CryptoList from "./components/crypto/CryptoList";
 import cryptocurrencyReducer from "./reducers/cryptocurrencyReducer";
 
 function App() {
