@@ -1,15 +1,16 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 import CryptoItem from "./CryptoItem";
 import NewCrypto from "./NewCrypto";
 import formatCurrency from "../../utils/formatCurrency";
 
-function CryptoList({ cryptocurrencies, dispatchCryptocurrencies }) {
+function CryptoList() {
+  const cryptocurrencies = useSelector((state) => state.cryptocurrency);
   const sum = (cryptocurrencies || []).reduce((prev, next, index) => {
     if (index === 1) {
-      return prev.prices.pln * prev.quantity + next.prices.pln * next.quantity;
+      return prev.prices.usd * prev.quantity + next.prices.usd * next.quantity;
     }
-    return prev + next.prices.pln * next.quantity;
+    return prev + next.prices.usd * next.quantity;
   });
 
   return (
@@ -19,45 +20,11 @@ function CryptoList({ cryptocurrencies, dispatchCryptocurrencies }) {
         <p className="text-sm">{formatCurrency(sum, "USD")}</p>
       </li>
       {(cryptocurrencies || []).map((cryptocurrency) => (
-        <CryptoItem
-          cryptocurrency={cryptocurrency}
-          key={cryptocurrency.id}
-          removeCrypto={() =>
-            dispatchCryptocurrencies({
-              type: "remove",
-              payload: cryptocurrency.id
-            })
-          }
-        />
+        <CryptoItem cryptocurrency={cryptocurrency} key={cryptocurrency.id} />
       ))}
-      <NewCrypto
-        addCrypto={(cryptocurrency) =>
-          dispatchCryptocurrencies({ type: "add", payload: cryptocurrency })
-        }
-      />
+      <NewCrypto />
     </ul>
   );
 }
-
-CryptoList.propTypes = {
-  cryptocurrencies: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      quantity: PropTypes.number,
-      prices: PropTypes.shape({
-        usd: PropTypes.number,
-        eur: PropTypes.number,
-        pln: PropTypes.number
-      })
-    })
-  ),
-  dispatchCryptocurrencies: PropTypes.func
-};
-
-CryptoList.defaultProps = {
-  cryptocurrencies: [],
-  dispatchCryptocurrencies: () => {}
-};
 
 export default CryptoList;

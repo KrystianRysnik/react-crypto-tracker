@@ -1,23 +1,28 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 import Autocomplete from "../input/Autocomplete";
 import Input from "../input/Input";
 import { fetchDetails } from "../../api/coingeckoApi";
+import { add } from "../../features/cryptocurrency/cryptocurrenySlice";
 
-function NewCrypto({ addCrypto }) {
+function NewCrypto() {
+  const dispatch = useDispatch();
+
   const handleAdd = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const coinDetails = await fetchDetails(formData.get("coin[id]"));
     const prices = coinDetails[formData.get("coin[id]")];
 
-    addCrypto({
-      id: formData.get("coin[id]"),
-      name: formData.get("coin[name]"),
-      symbol: formData.get("coin[symbol]"),
-      quantity: parseFloat(formData.get("quantity")),
-      prices
-    });
+    dispatch(
+      add({
+        id: formData.get("coin[id]"),
+        name: formData.get("coin[name]"),
+        symbol: formData.get("coin[symbol]"),
+        quantity: parseFloat(formData.get("quantity")),
+        prices
+      })
+    );
 
     e.target.reset();
   };
@@ -43,9 +48,5 @@ function NewCrypto({ addCrypto }) {
     </li>
   );
 }
-
-NewCrypto.propTypes = {
-  addCrypto: PropTypes.func.isRequired
-};
 
 export default NewCrypto;

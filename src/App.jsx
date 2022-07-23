@@ -1,24 +1,10 @@
-import React, { useEffect, useReducer } from "react";
+import React from "react";
 import CryptoList from "./components/crypto/CryptoList";
-import cryptocurrencyReducer from "./reducers/cryptocurrencyReducer";
 
 function App() {
-  const [cryptocurrencies, dispatchCryptocurrencies] = useReducer(
-    cryptocurrencyReducer,
-    JSON.parse(localStorage.getItem("cryptocurrencies")) || []
-  );
-
-  useEffect(() => {
-    const json = JSON.stringify(cryptocurrencies);
-    localStorage.setItem("cryptocurrencies", json);
-  });
-
   return (
     <div className="h-full p-4 bg-slate-200">
-      <CryptoList
-        cryptocurrencies={cryptocurrencies}
-        dispatchCryptocurrencies={dispatchCryptocurrencies}
-      />
+      <CryptoList />
     </div>
   );
 }
