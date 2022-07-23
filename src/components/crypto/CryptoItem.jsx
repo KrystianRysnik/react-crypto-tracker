@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { XIcon } from "@heroicons/react/solid";
+import formatCurrency from "../../utils/formatCurrency";
 
 function CryptoItem({ cryptocurrency, removeCrypto }) {
   const { name, quantity, prices, symbol } = cryptocurrency;
@@ -12,7 +13,7 @@ function CryptoItem({ cryptocurrency, removeCrypto }) {
         {quantity} <small className="uppercase">{symbol}</small>
       </p>
 
-      <p className="text-sm">{(prices.usd * quantity).toFixed(2)}$</p>
+      <p className="text-sm">{formatCurrency(prices.pln * quantity, "USD")}</p>
 
       <button
         className="w-[42px] h-[42px] absolute top-0 right-0 text-slate-500 hover:text-slate-800"
