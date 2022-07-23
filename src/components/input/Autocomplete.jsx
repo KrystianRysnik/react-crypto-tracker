@@ -37,6 +37,7 @@ function Autocomplete({ id, label }) {
             displayValue={(crypto) =>
               crypto ? `${crypto.symbol} - ${crypto.name}` : ""
             }
+            autoComplete="off"
             className="border-[1px] border-slate-400 rounded-md px-3 h-[38px] w-full"
           />
           <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md border-[1px] border-slate-400 bg-white shadow-lg">
