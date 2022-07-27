@@ -28,7 +28,7 @@ function NewCrypto() {
   };
 
   return (
-    <li className="p-4 bg-white rounded-lg shadow-md">
+    <li className="card">
       <form onSubmit={handleAdd}>
         <div className="mb-3">
           <Autocomplete id="coin" label="Cryptocurrency" />
@@ -37,10 +37,7 @@ function NewCrypto() {
           <Input id="quantity" label="Quantity" type="number" />
         </div>
         <div>
-          <button
-            type="submit"
-            className="block w-full py-2 px-1 bg-blue-600 rounded-md text-white"
-          >
+          <button type="submit" className="btn-primary">
             Add
           </button>
         </div>

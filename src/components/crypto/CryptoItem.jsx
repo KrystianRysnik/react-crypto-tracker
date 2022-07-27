@@ -10,16 +10,18 @@ function CryptoItem({ cryptocurrency }) {
   const { id, name, quantity, prices, symbol } = cryptocurrency;
 
   return (
-    <li className="p-4 bg-white rounded-lg shadow-md relative">
+    <li className="card">
       <h3 className="font-medium">{name}</h3>
-      <p className="text-xl">
+      <p className="text-xl dark:text-stone-400">
         {quantity} <small className="uppercase">{symbol}</small>
       </p>
 
-      <p className="text-sm">{formatCurrency(prices.usd * quantity, "USD")}</p>
+      <p className="text-sm dark:text-stone-400">
+        {formatCurrency(prices.usd * quantity, "USD")}
+      </p>
 
       <button
-        className="w-[42px] h-[42px] absolute top-0 right-0 text-slate-500 hover:text-slate-800"
+        className="close"
         type="button"
         onClick={() => dispatch(remove(id))}
       >

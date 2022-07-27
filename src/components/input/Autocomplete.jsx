@@ -38,9 +38,9 @@ function Autocomplete({ id, label }) {
               crypto ? `${crypto.symbol} - ${crypto.name}` : ""
             }
             autoComplete="off"
-            className="border-[1px] border-slate-400 rounded-md px-3 h-[38px] w-full"
+            className="form-control"
           />
-          <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md border-[1px] border-slate-400 bg-white shadow-lg">
+          <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md border-[1px] border-slate-400 bg-white shadow-lg dark:bg-stone-800 dark:border-stone-700">
             {(filteredCrypto || defaultCrypto).map((crypto) => {
               return (
                 <Combobox.Option

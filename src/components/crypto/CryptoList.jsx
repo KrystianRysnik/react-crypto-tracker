@@ -15,9 +15,11 @@ function CryptoList() {
 
   return (
     <ul className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <li className="p-4 bg-white rounded-lg shadow-md relative">
+      <li className="card">
         <h3 className="font-medium">Sum</h3>
-        <p className="text-sm">{formatCurrency(sum, "USD")}</p>
+        <p className="text-sm dark:text-stone-400">
+          {formatCurrency(sum, "USD")}
+        </p>
       </li>
       {(cryptocurrencies || []).map((cryptocurrency) => (
         <CryptoItem cryptocurrency={cryptocurrency} key={cryptocurrency.id} />

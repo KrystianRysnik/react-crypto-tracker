@@ -11,15 +11,10 @@ function Input({ id, label, type }) {
           step="0.0000000001"
           name={id}
           id={id}
-          className="border-[1px] border-slate-400 rounded-md px-3 h-[38px] w-full"
+          className="form-control"
         />
       ) : (
-        <input
-          type={type}
-          name={id}
-          id={id}
-          className="border-[1px] border-slate-400 rounded-md px-3 h-[38px] w-full"
-        />
+        <input type={type} name={id} id={id} className="form-control" />
       )}
     </label>
   );
